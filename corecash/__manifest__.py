@@ -7,8 +7,18 @@
     'category': 'Hidden',
     'summary': 'Corecash App for customizations',
     'depends': [
+        'sale_management',
+        'account_accountant',
+        'account_reports',
+        'stock',
+        'account_invoice_production_lot',
     ],
     'data': [
+        'views/account_invoice_view.xml',
+        'reports/layout_invoice.xml',
+        'reports/layout_creditnote.xml',
+        'reports/layout.xml',
+        'reports/report.xml',
     ],
     'demo': [
     ],

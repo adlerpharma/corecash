@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="corecash.layout_pdf" inherit_id="web.report_assets_pdf">
+        <xpath expr="." position="inside">
+            <link href="/corecash/static/src/css/corecash_style.css" rel="stylesheet"/>
+        </xpath>
+    </template>
+
+    <template id="corecash.corecash_report_invoice">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="lang" t-value="o.user_id.lang"/>
+                <t t-call="corecash.invoice_report_document" t-lang="lang"/>
+            </t>
+        </t>
+    </template>
+    <template id="corecash.invoice_report_document">
+        <t t-call="corecash.layout_invoice">
+        </t>
+    </template>
+    <template id="corecash.corecash_report_creditnote">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="lang" t-value="o.user_id.lang"/>
+                <t t-call="corecash.creditnote_report_document" t-lang="lang"/>
+            </t>
+        </t>
+    </template>
+    <template id="corecash.creditnote_report_document">
+        <t t-call="corecash.layout_creditnote">
+        </t>
+    </template>
+</odoo>

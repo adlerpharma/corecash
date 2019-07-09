@@ -36,7 +36,7 @@
             </tr>
             <tr><td style="padding-bottom:5px;" colspan="2"/>
                 <td style="text-align:left;padding-bottom:5px;" colspan="4">
-                    <b><t t-esc="o.partner_id.city"/></b>
+                    <b><t t-esc="o.partner_id.city.name"/></b>
                 </td>
             </tr>
             <tr><td style="padding-bottom:15px;" colspan="6"/>

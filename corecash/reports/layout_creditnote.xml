@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<odoo>
-    <template id="layout_creditnote">
+<<?xml version="1.0"?>
+<t t-name="corecash.layout_creditnote">
         <div t-att-data-oe-model="o._name" t-att-data-oe-id="o.id" class="page article">
-            <table style="width:63%;font-size:small;">
+            <table style="width:63%;height:90px;font-size:small;">
                  <colgroup>
                     <col width="8%"/>
-                    <col width="15%"/>
+                    <col width="8%"/>
                     <col width="15%"/>
                     <col width="15%"/>
                     <col width="25%"/>
@@ -13,7 +12,7 @@
                 </colgroup>
             <tr/>
             <tr style="text-align:center;font-weight:bold;"><td/>
-                <t t-if="o.date_invoice">
+                <t t-if="o.date_invoice"><br/><br/>
                     <t t-set="date_split" t-value="o.split_date_invoice()"/>
                     <td style="padding-top:5px;padding-bottom:5px;"><t t-esc="date_split[0]"/></td>
                     <td style="padding-top:5px;padding-bottom:5px;"><t t-esc="date_split[1]"/></td>
@@ -28,28 +27,28 @@
                 <td style="padding-bottom:5px;" colspan="3">
                     <b><t t-esc="o.partner_id.name"/></b>
                 </td>
-                <td style="font-size:x-small;vertical-align:sub" colspan="2"><b><t t-esc="o.number"/></b></td>
+                <td style="font-size:x-small;vertical-align:sub" colspan="2"><b></b></td>
             </tr>
             <tr><td style="padding-bottom:5px;" colspan="2"/>
                 <td style="text-align:left;padding-bottom:5px;" colspan="4">
-                    <b>(<t t-esc="o.warehouse_id.code"/>)</b>
+                    <b><t t-esc="o.partner_id.ref"/></b>
                 </td>
             </tr>
             <tr><td style="padding-bottom:5px;" colspan="2"/>
                 <td style="text-align:left;padding-bottom:5px;" colspan="4">
-                    <b><t t-esc="o.partner_id.state_id.name"/></b>
+                    <b><t t-esc="o.partner_id.city"/></b>
                 </td>
             </tr>
             <tr><td style="padding-bottom:15px;" colspan="6"/>
             </tr>
             </table>
-            <table id="products_lines" cellspacing="0px" cellpadding="0px" style="width:63%;padding:0px">
+            <table id="products_lines" cellspacing="0px" cellpadding="0px" style="width:60%;padding:0px">
             <colgroup>
                         <col width="5%" height="20px"/>
                         <col width="90%" height="20px"/>
                         <col width="5%" height="20px"/>
                     </colgroup>
-            <tr><td colspan="2" style="vertical-align:top;height:92px;padding:0px;">
+            <tr><td colspan="2" style="vertical-align:top;height:86px;padding:0px;">
                 <table id="products_lines" style="width:100%;vertical-align:top;font-size:small">
                     <colgroup>
                         <col width="5%" height="20px"/>
@@ -87,5 +86,6 @@
                 </t>
             </div>
         </div>
+    </t>
     </template>
 </odoo>

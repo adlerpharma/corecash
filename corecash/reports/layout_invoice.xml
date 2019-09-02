@@ -24,14 +24,14 @@
                             <t t-if="o.partner_id.street">
                                 <t t-esc="o.partner_id.street"/>
                             </t>
-                            <t t-if="o.partner_id.city">
-                                <span> - </span><t t-esc="o.partner_id.city"/>
-                            </t>
                             <t t-if="o.partner_id.street2">
                                 <span> - </span><t t-esc="o.partner_id.street2"/>
                             </t>
                             <t t-if="o.partner_id.state_id">
                                 <span> - </span><t t-esc="o.partner_id.state_id.name"/>
+                            </t>
+                            <t t-if="o.partner_id.city">
+                                <span> - </span><t t-esc="o.partner_id.city"/>
                             </t>
                             <br/>
                             <t t-if="o.partner_id.phone">

@@ -123,7 +123,8 @@
                     <td colspan="2"><t t-esc="o.user_id.name"/></td>
                     <td><t t-esc="o.date_invoice" t-options="{&quot;widget&quot;: &quot;date&quot;}"/></td>
                     <td><t t-esc="o.warehouse_id.name"/></td>
-                    <td style="text-align:center"><t t-esc="o.warehouse_id.code"/></td>
+                    <td><t t-esc="o.partner_id.ref"/></td>
+                    <!---<td style="text-align:center"><t t-esc="o.warehouse_id.code"/></td>-->
                     <td/>
                     <td class="set-value-right"> <t t-esc="o.amount_tax" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/></td>
                     <td/>

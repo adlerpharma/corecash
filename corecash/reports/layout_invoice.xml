@@ -111,7 +111,7 @@
                 <tbody style="font-size:x-small">
                 <tr>
                     <t t-set="amount_text" t-value="o.currency_id.amount_to_text(o.amount_total)"/>
-                    <t t-set="words" t-value="o.split_amount_text(amount_text, 25)"/>
+                    <t t-set="words" t-value="o.split_amount_text(amount_text, 25)"/><br/>
                     <td colspan="2"><br/><br/></td>
                     <td colspan="4" style="text-align:center"><t t-esc="amount_text"/></td>
                     <td/>

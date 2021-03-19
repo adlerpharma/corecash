@@ -2,70 +2,29 @@
 # Copyright 2013 Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 # Copyright 2017 Vicent Cubells <vicent.cubells@tecnativa.com>
 # Copyright 2018 Tecnativa - Pedro M. Baeza
+# Copyright 2020 Tecnativa - João Marques
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+from collections import defaultdict
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 
-class AccountInvoiceLine(models.Model):
-    _inherit = "account.invoice.line"
+class AccountMoveLine(models.Model):
+    _inherit = "account.move.line"
 
     prod_lot_ids = fields.Many2many(
-        comodel_name='stock.production.lot',
-        compute='_compute_prod_lots',
+        comodel_name="stock.production.lot",
+        compute="_compute_prod_lots",
         string="Production Lots",
     )
 
-    lot_formatted_note = fields.Html(
-        string='Formatted Note',
-        compute='_compute_line_lots',
-    )
-
-    lot_plain_note = fields.Char(
-        string='Plain Note',
-        compute='_compute_line_plain_lots',
-    )
-
-    @api.multi
+    @api.depends("move_line_ids")
     def _compute_prod_lots(self):
         for line in self:
-            line.prod_lot_ids = line.mapped(
-                'move_line_ids.move_line_ids.lot_id'
-            )
+            line.prod_lot_ids = line.mapped("move_line_ids.move_line_ids.lot_id")
 
-    @api.multi
-    def _compute_line_lots(self):
-        for line in self:
-            note = '<ul>'
-            lot_strings = []
-            for sml in line.mapped('move_line_ids.move_line_ids'):
-                if sml.lot_id:
-                    if sml.product_id.tracking == 'serial':
-                        lot_strings.append('<li>%s %s</li>' % (
-                            _('S/N'), sml.lot_id.name,
-                        ))
-                    else:
-                        lot_strings.append('<li>%s %s (%s)</li>' % (
-                            _('Lot'), sml.lot_id.name, sml.qty_done,
-                        ))
-            if lot_strings:
-                note += ' '.join(lot_strings)
-                note += '</ul>'
-                line.lot_formatted_note = note
-
-    @api.multi
-    def _compute_line_plain_lots(self):
-        for line in self:
-            note = ''
-            lot_strings = []
-            for sml in line.mapped('move_line_ids.move_line_ids'):
-                if sml.lot_id:
-                    if sml.product_id.tracking == 'serial':
-                        lot_strings.append('%s %s ' % (
-                            _('S/N'), sml.lot_id.name))
-                    else:
-                        lot_strings.append('%s ' % (
-                            sml.lot_id.name))
-            if lot_strings:
-                note += ' '.join(lot_strings)
-                line.lot_plain_note = note
+    def lots_grouped_by_quantity(self):
+        lot_dict = defaultdict(float)
+        for sml in self.mapped("move_line_ids.move_line_ids"):
+            lot_dict[sml.lot_id.name] += sml.qty_done
+        return lot_dict

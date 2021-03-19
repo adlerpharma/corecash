@@ -8,19 +8,15 @@ class InventoryLine(models.Model):
     _inherit = "stock.inventory.line"
 
     currency_id = fields.Many2one(
-        string="Currency",
-        related="inventory_id.company_id.currency_id",
-        readonly=True,
+        string="Currency", related="inventory_id.company_id.currency_id", readonly=True
     )
     adjustment_cost = fields.Monetary(
-        string="Adjustment cost",
-        compute="_compute_adjustment_cost",
-        store=True,
+        string="Adjustment cost", compute="_compute_adjustment_cost", store=True
     )
 
-    @api.depends("product_qty", "theoretical_qty", "inventory_id.state")
+    @api.depends("difference_qty", "inventory_id.state")
     def _compute_adjustment_cost(self):
         for record in self:
-            adjusted_qty = record.product_qty - record.theoretical_qty
-            adjustment_cost = adjusted_qty * record.product_id.standard_price
-            record.adjustment_cost = adjustment_cost
+            record.adjustment_cost = (
+                record.difference_qty * record.product_id.standard_price
+            )

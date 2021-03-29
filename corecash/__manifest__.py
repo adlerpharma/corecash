@@ -12,6 +12,7 @@
         'account_reports',
         'stock',
         'account_invoice_production_lot',
+        'stock_picking_invoice_link',
     ],
     'data': [
         'views/account_invoice_view.xml',

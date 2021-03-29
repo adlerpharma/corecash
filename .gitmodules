@@ -1,3 +1,7 @@
 [submodule "stock-logistics-workflow"]
 	path = stock-logistics-workflow
 	url = git@github.com:vauxoo/stock-logistics-workflow.git
+[submodule "stock-logistics-warehouse"]
+	path = stock-logistics-warehouse
+	url = git@github.com:Vauxoo/stock-logistics-warehouse.git
+	branch = 13.0

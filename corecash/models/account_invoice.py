@@ -6,7 +6,7 @@ from odoo import fields, models, api
 
 class AccountInvoice(models.Model):
 
-    _inherit = "account.invoice"
+    _inherit = "account.move"
 
     warehouse_id = fields.Many2one(
         'stock.warehouse', help="The warehouse related with delivery of products in customer invoices")

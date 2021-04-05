@@ -46,10 +46,10 @@
             <td class="align-top">
                 <table style="width:100%;font-size:x-small;">
                     <tr><td style="text-align:right">
-                <b><t t-esc="o.number"/></b>
+                <b><t t-esc="o.name"/></b>
                 </td></tr>
                 <tr><td style="text-align:left">
-                <b><t t-esc="o.comment"/></b>
+                <b><t t-esc="o.narration"/></b>
                 </td></tr>
                 </table>
             </td></tr>
@@ -74,7 +74,7 @@
                             <t t-esc="line.product_id.default_code if line.product_id else ''"/>
                         </td>
                         <td class="set-value-left" style="text-align:left">
-                            <t t-esc="line.lot_plain_note"/>
+                            <!-- <t t-esc="line.lot_plain_note"/> -->
                         </td>
                         <td class="set-value-left">
                             <t t-esc="line.product_id.name if line.product_id else line.name"/><br/>
@@ -121,18 +121,18 @@
                 <tr>
                     <td><br/><br/></td>
                     <td colspan="2"><t t-esc="o.user_id.name"/></td>
-                    <td><t t-esc="o.date_invoice" t-options="{&quot;widget&quot;: &quot;date&quot;}"/></td>
+                    <td><t t-esc="o.invoice_date" t-options="{&quot;widget&quot;: &quot;date&quot;}"/></td>
                     <td><t t-esc="o.warehouse_id.name"/></td>
                     <td><t t-esc="o.partner_id.ref"/></td>
-                    <!---<td style="text-align:center"><t t-esc="o.warehouse_id.code"/></td>-->
+                    -<td style="text-align:center"><t t-esc="o.warehouse_id.code"/></td>
                     <td/>
                     <td class="set-value-right"> <t t-esc="o.amount_tax" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/></td>
                     <td/>
                 </tr>
                 <tr style="text-valign:top">
                     <td colspan="3"><br/></td>
-                    <td><br/><t t-esc="o.origin"/></td>
-                    <td><br/><t t-esc="o.payment_term_id.name"/></td>
+                    <td><br/><t t-esc="o.invoice_origin"/></td>
+                    <td><br/><t t-if="o.invoice_payment_term_id" t-esc="o.invoice_payment_term_id.name"/></td>
                     <td style="padding-botton:10px"><br/><t t-esc="o.team_id.name">
                         <br/>
                         <t t-set="isbr" t-value="''"/>
@@ -157,7 +157,7 @@
                 </tr>
                 <tr>
                     <td colspan="3"><t t-esc="words[1]"/></td>
-                    <td><t t-esc="o.date_due" t-options="{&quot;widget&quot;: &quot;date&quot;}"/></td>
+                    <td><t t-esc="o.invoice_date_due" t-options="{&quot;widget&quot;: &quot;date&quot;}"/></td>
                     <td colspan="5"/>
                 </tr>
                 <tr>

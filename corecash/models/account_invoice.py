@@ -31,4 +31,4 @@ class AccountInvoice(models.Model):
         report
         """
         self.ensure_one()
-        return [self.date_invoice.day, self.date_invoice.month, self.date_invoice.year]
+        return [self.invoice_date.day, self.invoice_date.month, self.invoice_date.year]

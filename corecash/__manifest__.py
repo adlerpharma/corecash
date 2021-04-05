@@ -16,10 +16,10 @@
     ],
     'data': [
         'views/account_invoice_view.xml',
-        # 'reports/layout_invoice.xml',
-        # 'reports/layout_creditnote.xml',
-        # 'reports/layout.xml',
-        # 'reports/report.xml',
+        'reports/layout_invoice.xml',
+        'reports/layout_creditnote.xml',
+        'reports/layout.xml',
+        'reports/report.xml',
     ],
     'demo': [
     ],

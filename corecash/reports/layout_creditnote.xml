@@ -13,7 +13,7 @@
                 </colgroup>
             <tr/>
             <tr style="text-align:center;font-weight:bold;"><td/>
-                <t t-if="o.date_invoice"><br/><br/>
+                <t t-if="o.invoice_date"><br/><br/>
                     <t t-set="date_split" t-value="o.split_date_invoice()"/>
                     <td style="padding-top:5px;padding-bottom:5px;"><t t-esc="date_split[0]"/></td>
                     <td style="padding-top:5px;padding-bottom:5px;"><t t-esc="date_split[1]"/></td>
@@ -68,7 +68,7 @@
                     <tr style="vertical-align:top">
                             <td/>
                             <td style="text-align:left;padding-bottom:2px;padding-bottom:1px;">
-                            INVOICE: <t t-esc="o.origin"/>
+                            INVOICE: <t t-esc="o.invoice_origin"/>
                             </td>
                     </tr>
                     </tbody>

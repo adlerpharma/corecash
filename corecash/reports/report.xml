@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<odoo noupdate="1">
+<odoo>
     <record id="corecash_paperformat" model="report.paperformat">
         <field name="name">Invoice CORECA Format</field>
         <field name="default" eval="True" />
@@ -23,7 +23,7 @@
         <field name="page_width">0</field>
         <field name="orientation">Portrait</field>
         <field name="margin_top">0</field>
-        <field name="margin_bottom">50px</field>
+        <field name="margin_bottom">15</field>
         <field name="margin_left">5</field>
         <field name="margin_right">5</field>
         <field name="header_line" eval="False"/>
@@ -37,7 +37,7 @@
         report_type="qweb-pdf"
         name="corecash.corecash_report_invoice"
         file="corecash.corecash_report_invoice"
-        attachment="(object.state in ('open','paid')) and ((object.number or '')+'.pdf')"
+        attachment="(object.state in ('open','posted')) and ((object.name or '')+'.pdf')"
     />
     <report
         id="cc_report_creditnote"
@@ -46,14 +46,14 @@
         report_type="qweb-pdf"
         name="corecash.corecash_report_creditnote"
         file="corecash.corecash_report_creditnote"
-        attachment="(object.state in ('open','paid')) and ((object.number or '')+'.pdf')"
+        attachment="(object.state in ('open','posted')) and ((object.name or '')+'.pdf')"
     />
     <record id="cc_report_invoice" model="ir.actions.report">
         <field name="paperformat_id" ref="corecash_paperformat"/>
-        <field name="print_report_name">(object.state in ('open','paid')) and ((object.number or '')) or (object.state in ('draft') and 'Invoice.pdf')</field>
+        <field name="print_report_name">(object.state in ('open','posted')) and ((object.name or '')) or (object.state in ('draft') and 'Invoice.pdf')</field>
     </record>
     <record id="cc_report_creditnote" model="ir.actions.report">
         <field name="paperformat_id" ref="corecash_paperformat_cn"/>
-        <field name="print_report_name">(object.state in ('open','paid')) and ((object.number or '')) or (object.state in ('draft') and 'CreditNote.pdf')</field>
+        <field name="print_report_name">(object.state in ('open','posted')) and ((object.name or '')) or (object.state in ('draft') and 'CreditNote.pdf')</field>
     </record>
 </odoo>

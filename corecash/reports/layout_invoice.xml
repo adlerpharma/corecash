@@ -10,7 +10,7 @@
             <tr><td class="align-top">
             <table id="invoice_client_data" style="width:100%; text-align:left; font-size:x-small" class="uppercase">
                 <tr>
-                    <td class="set-value-left" style="padding-top:3px">
+                    <td class="set-value-left" style="padding-top:4px">
                         <br/><b><t t-esc="o.partner_id.name"/></b><br/>
                     </td>
                 </tr>
@@ -74,6 +74,7 @@
                             <t t-esc="line.product_id.default_code if line.product_id else ''"/>
                         </td>
                         <td class="set-value-left" style="text-align:left">
+                            <t t-esc="line.prod_lot_ids.mapped('name')[0] if len(line.prod_lot_ids.mapped('name')) >= 1 else '|'.join(line.prod_lot_ids.mapped('name'))"/>
                             <!-- <t t-esc="line.lot_plain_note"/> -->
                         </td>
                         <td class="set-value-left">
@@ -96,12 +97,12 @@
                     </tr>
                 </tbody>
             </table>
-                <table id="products_header" style="width:100%">
+                <br/>
+                <table id="products_header" style="width:99%">
                 <colgroup>
-                    <col width="15%"/>
-					<col width="10%"/>				  
+                    <col width="12%"/>
+                    <col width="10%"/>
                     <col width="8%"/>
-                    
                     <col width="12%"/>
                     <col width="14%"/>
                     <col width="14%"/>
@@ -116,7 +117,7 @@
                     <td colspan="2"><br/><br/></td>
                     <td colspan="4" style="text-align:center"><t t-esc="amount_text"/></td>
                     <td/>
-                    <td class="set-value-right"><t t-esc="o.amount_untaxed" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/></td>
+                    <td colspan="2" style="text-align:right"><t t-esc="o.amount_untaxed" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/></td>
                     <td/>
                 </tr>
                 <tr>
@@ -131,10 +132,10 @@
                     <td/>
                 </tr>
                 <tr style="text-valign:top">
-                    <td colspan="3"><br/><br/></td>
+                    <td colspan="4"><br/><br/><br/></td>
                     <td><br/><t t-esc="o.invoice_origin"/></td>
                     <td><br/><t t-if="o.invoice_payment_term_id" t-esc="o.invoice_payment_term_id.name"/></td>
-                    <td style="padding-botton:10px"><t t-esc="o.team_id.name">
+                    <td><t t-esc="o.team_id.name">
                         <br/>
                         <t t-set="isbr" t-value="''"/>
                         <t t-foreach="o.team_id.member_ids" t-as="i">
@@ -149,10 +150,10 @@
                 </tr>
                 <tr>
                     <td colspan="5"><br/><br/><br/><br/></td>
-                    <td colspan="4" style="font-size:x-small"><br/>Nro de Aprobación: ASFC 03/0006/01/2019/0<br/><br/></td>
+                    <td colspan="4" style="font-size:x-small"><br/>Nro de Aprobación: ASFC 03/0006/01/2019/0<br/><br/><br/></td>
                 </tr>
                 <tr>
-                    <td colspan="7"/></td>
+                    <td colspan="7"></td>
                     <td style="text-align:right"><t t-esc="words[0]"/></td>
                     <td/>
                 </tr>
@@ -173,8 +174,8 @@
                         <t t-if="o.partner_id.street">
                             <t t-esc="o.partner_id.street"/>
                         </t>
-                        <t t-if="o.partner_id.street2">
-                            <span> - </span><t t-esc="o.partner_id.street2"/>
+                        <t t-if="o.partner_id.city">
+                            <span> - </span><t t-esc="o.partner_id.city"/>
                         </t>
                         <t t-if="o.partner_id.state_id">
                             <br/><t t-esc="o.partner_id.state_id.name"/>
@@ -188,5 +189,6 @@
                 </t>
             </div>
         </div>
+    </t>
     </template>
 </odoo>

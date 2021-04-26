@@ -125,16 +125,16 @@
                     <td><t t-esc="o.invoice_date" t-options="{&quot;widget&quot;: &quot;date&quot;}"/></td>
                     <td><t t-esc="o.warehouse_id.name"/></td>
                     <td><t t-esc="o.partner_id.ref"/></td>
-                    -<td style="text-align:center"><t t-esc="o.warehouse_id.code"/></td>
+                    <td style="text-align:center"><t t-esc="o.warehouse_id.code"/></td>
                     <td/>
                     <td class="set-value-right"> <t t-esc="o.amount_tax" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/></td>
                     <td/>
                 </tr>
                 <tr style="text-valign:top">
-                    <td colspan="3"><br/></td>
+                    <td colspan="3"><br/><br/></td>
                     <td><br/><t t-esc="o.invoice_origin"/></td>
                     <td><br/><t t-if="o.invoice_payment_term_id" t-esc="o.invoice_payment_term_id.name"/></td>
-                    <td style="padding-botton:10px"><br/><t t-esc="o.team_id.name">
+                    <td style="padding-botton:10px"><t t-esc="o.team_id.name">
                         <br/>
                         <t t-set="isbr" t-value="''"/>
                         <t t-foreach="o.team_id.member_ids" t-as="i">
@@ -149,7 +149,7 @@
                 </tr>
                 <tr>
                     <td colspan="5"><br/><br/><br/><br/></td>
-                    <td colspan="4" style="font-size:x-small"><br/>Nro de Aprobación DGI: ASFC 03/0006/01/2019/0<br/><br/></td>
+                    <td colspan="4" style="font-size:x-small"><br/>Nro de Aprobación: ASFC 03/0006/01/2019/0<br/><br/></td>
                 </tr>
                 <tr>
                     <td colspan="7"/></td>
@@ -178,10 +178,6 @@
                         </t>
                         <t t-if="o.partner_id.state_id">
                             <br/><t t-esc="o.partner_id.state_id.name"/>
-                        </t>
-                        <br/>
-                        <t t-if="o.partner_id.city">
-                            <t t-esc="o.partner_id.city"/>
                         </t>
                     </td>
                 </tr>

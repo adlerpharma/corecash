@@ -188,6 +188,5 @@
                 <t t-if="report_type == 'pdf'">
                 </t>
             </div>
-        </div>
-    </template>
-</odoo>
+          </div>
+     </t>

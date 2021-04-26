@@ -58,8 +58,8 @@
             <table id="products_header" style="width:100%;height:280px">
                 <colgroup>
                     <col width="2%"/>
-                    <col width="8%"/>
-                    <col width="12%"/>
+                    <col width="10%"/>
+                    <col width="10%"/>
                     <col width="33%"/>
                     <col width="10%"/>
                     <col width="10%"/>
@@ -99,8 +99,9 @@
                 <table id="products_header" style="width:100%">
                 <colgroup>
                     <col width="15%"/>
+					<col width="10%"/>				  
                     <col width="8%"/>
-                    <col width="8%"/>
+                    
                     <col width="12%"/>
                     <col width="14%"/>
                     <col width="14%"/>
@@ -111,7 +112,7 @@
                 <tbody style="font-size:x-small">
                 <tr>
                     <t t-set="amount_text" t-value="o.currency_id.amount_to_text(o.amount_total)"/>
-                    <t t-set="words" t-value="o.split_amount_text(amount_text, 25)"/><br/>
+                    <t t-set="words" t-value="o.split_amount_text(amount_text, 25)"/>
                     <td colspan="2"><br/><br/></td>
                     <td colspan="4" style="text-align:center"><t t-esc="amount_text"/></td>
                     <td/>
@@ -124,16 +125,16 @@
                     <td><t t-esc="o.invoice_date" t-options="{&quot;widget&quot;: &quot;date&quot;}"/></td>
                     <td><t t-esc="o.warehouse_id.name"/></td>
                     <td><t t-esc="o.partner_id.ref"/></td>
-                    -<td style="text-align:center"><t t-esc="o.warehouse_id.code"/></td>
+                    <td style="text-align:center"><t t-esc="o.warehouse_id.code"/></td>
                     <td/>
                     <td class="set-value-right"> <t t-esc="o.amount_tax" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/></td>
                     <td/>
                 </tr>
                 <tr style="text-valign:top">
-                    <td colspan="3"><br/></td>
+                    <td colspan="3"><br/><br/></td>
                     <td><br/><t t-esc="o.invoice_origin"/></td>
                     <td><br/><t t-if="o.invoice_payment_term_id" t-esc="o.invoice_payment_term_id.name"/></td>
-                    <td style="padding-botton:10px"><br/><t t-esc="o.team_id.name">
+                    <td style="padding-botton:10px"><t t-esc="o.team_id.name">
                         <br/>
                         <t t-set="isbr" t-value="''"/>
                         <t t-foreach="o.team_id.member_ids" t-as="i">
@@ -147,11 +148,11 @@
                     <td/>
                 </tr>
                 <tr>
-                    <td colspan="5"><br/><br/><br/></td>
-                    <td colspan="4" style="font-size:x-small"><br/><br/>Nro de Aprobación DGI: ASFC 03/0006/01/2019/0<br/><br/><br/></td>
+                    <td colspan="5"><br/><br/><br/><br/></td>
+                    <td colspan="4" style="font-size:x-small"><br/>Nro de Aprobación: ASFC 03/0006/01/2019/0<br/><br/></td>
                 </tr>
                 <tr>
-                    <td colspan="7"/>
+                    <td colspan="7"/></td>
                     <td style="text-align:right"><t t-esc="words[0]"/></td>
                     <td/>
                 </tr>
@@ -177,10 +178,6 @@
                         </t>
                         <t t-if="o.partner_id.state_id">
                             <br/><t t-esc="o.partner_id.state_id.name"/>
-                        </t>
-                        <br/>
-                        <t t-if="o.partner_id.city">
-                            <t t-esc="o.partner_id.city"/>
                         </t>
                     </td>
                 </tr>
